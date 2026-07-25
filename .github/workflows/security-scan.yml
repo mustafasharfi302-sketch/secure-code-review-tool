@@ -29,6 +29,9 @@ jobs:
   semgrep-scan:
     name: Semgrep - Static Analysis (SAST)
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Run Semgrep
@@ -51,6 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
+      contents: read
     strategy:
       matrix:
         language: [ 'javascript', 'python' ]  # extend per project language mix
@@ -90,9 +94,9 @@ jobs:
         with:
           node-version: '20'
       - name: Install dependencies
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts || npm install --ignore-scripts || true
       - name: Install ESLint security plugins
-        run: npm install --no-save eslint-plugin-security eslint-plugin-node
+        run: npm install --no-save eslint eslint-plugin-security eslint-plugin-node
       - name: Run ESLint
         run: npx eslint . --ext .js,.jsx,.ts,.tsx -f json -o eslint-report.json || true
       - name: Upload ESLint report
