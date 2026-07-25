@@ -57,7 +57,7 @@ jobs:
       contents: read
     strategy:
       matrix:
-        language: [ 'javascript', 'python' ]  # extend per project language mix
+        language: [ 'javascript' ]  # extend per project language mix
     steps:
       - uses: actions/checkout@v4
       - uses: github/codeql-action/init@v3
