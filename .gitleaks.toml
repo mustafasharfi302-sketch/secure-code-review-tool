@@ -1,0 +1,21 @@
+title = "Secure Code Review Framework - Gitleaks Config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Reduce false positives"
+paths = [
+  '''(.*)?test(s)?/fixtures/.*''',
+  '''(.*)?\.lock$''',
+  '''(.*)?node_modules/.*''',
+]
+regexes = [
+  '''EXAMPLE_KEY_[0-9A-Za-z]{10,}''',
+]
+
+[[rules]]
+id = "generic-api-key"
+description = "Generic API Key pattern"
+regex = '''(?i)(api[_-]?key|apikey)["'\s:=]{1,3}[0-9a-zA-Z\-_]{20,45}'''
+tags = ["key", "API"]
