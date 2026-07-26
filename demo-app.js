@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
  const dbPassword = "admin123";
    eval("console.log('test')");
+if (userInput = "admin") {   // assignment instead of comparison — classic SonarQube-flagged bug
+  console.log("logged in");
+}
 
 // Intentionally insecure demo code for testing the security scanning pipeline
 
