@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+ const dbPassword = "admin123";
+   eval("console.log('test')");
 
 // Intentionally insecure demo code for testing the security scanning pipeline
 
